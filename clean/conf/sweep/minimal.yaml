@@ -1,0 +1,21 @@
+# @package _global_
+learner:
+    _target_: fastai.vision.learner.vision_learner
+    dls:
+        _target_: __main__.get_dls
+        item_tfms:
+            _target_: fastai.vision.augment.Resize
+            size: 160
+        batch_tfms:
+            _target_: fastai.vision.augment.aug_transforms
+            size: 112
+        valid_pct:
+            .4
+        bs:
+            256
+    arch:
+        convnext_tiny_in22k
+    metrics:
+        fastai.metrics.error_rate
+        
+    
